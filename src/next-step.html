@@ -1,0 +1,1115 @@
+<title>Next Step</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root {
+  --bg: #EEF2EF;
+  --surface: #FFFFFF;
+  --surface-2: #E2E9E5;
+  --ink: #18282A;
+  --muted: #56696A;
+  --line: #CCD7D2;
+  --accent: #16505A;
+  --accent-ink: #FFFFFF;
+  --hi: #F6CB45;
+  --hi-soft: rgba(246, 203, 69, 0.55);
+  --hi-ink: #2A2100;
+  --good: #2C7A4C;
+  --warn: #A95A14;
+  --shadow: 0 1px 2px rgba(20, 40, 42, 0.06), 0 6px 20px rgba(20, 40, 42, 0.06);
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --nav-h: 64px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0F1618;
+    --surface: #172124;
+    --surface-2: #1F2C30;
+    --ink: #E3ECEA;
+    --muted: #93A6A7;
+    --line: #2A3B3F;
+    --accent: #72C6CC;
+    --accent-ink: #0A1A1C;
+    --hi: #E9BA3A;
+    --hi-soft: rgba(233, 186, 58, 0.38);
+    --hi-ink: #1D1600;
+    --good: #5EC28C;
+    --warn: #E39A55;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0F1618;
+  --surface: #172124;
+  --surface-2: #1F2C30;
+  --ink: #E3ECEA;
+  --muted: #93A6A7;
+  --line: #2A3B3F;
+  --accent: #72C6CC;
+  --accent-ink: #0A1A1C;
+  --hi: #E9BA3A;
+  --hi-soft: rgba(233, 186, 58, 0.38);
+  --hi-ink: #1D1600;
+  --good: #5EC28C;
+  --warn: #E39A55;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body {
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-inline: 16px;
+  padding-block: 20px calc(var(--nav-h) + 32px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* header */
+.top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 15px; letter-spacing: 0.02em; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.brand-mark { width: 18px; height: 18px; border-radius: 5px; background: var(--hi); display: inline-block; transform: rotate(-6deg); }
+.day { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 7vw, 38px); line-height: 1.05; letter-spacing: -0.02em; margin: 4px 0 0; text-wrap: balance; }
+.wins-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.wins-pill b { color: var(--ink); }
+
+h2 { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.hint { color: var(--muted); font-size: 15px; margin: 0; max-width: 60ch; }
+.section { display: flex; flex-direction: column; gap: 12px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.spacer { flex: 1; }
+
+/* the hero: one next step */
+.now {
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 22px 20px 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.now-step {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(26px, 6.4vw, 34px); line-height: 1.18; letter-spacing: -0.015em;
+  margin: 0; text-wrap: balance; overflow-wrap: anywhere;
+}
+.now-step mark {
+  color: inherit;
+  background: linear-gradient(transparent 58%, var(--hi-soft) 58%, var(--hi-soft) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  padding: 0 2px;
+}
+.now-from { color: var(--muted); font-size: 15px; margin: 0; }
+.now-empty { font-family: var(--display); font-weight: 600; font-size: 22px; margin: 0; }
+
+/* buttons */
+.btn {
+  border: 1px solid var(--line); background: var(--surface); border-radius: 12px;
+  padding: 10px 14px; font-weight: 700; font-size: 15px; line-height: 1.2;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px;
+}
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.hi { background: var(--hi); color: var(--hi-ink); border-color: var(--hi); }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--muted); padding-inline: 10px; }
+.btn.ghost:hover { color: var(--ink); background: var(--surface-2); }
+.btn.small { min-height: 36px; padding: 6px 10px; font-size: 14px; border-radius: 10px; }
+.btn[disabled] { opacity: 0.45; cursor: default; }
+.icon-btn { border: 0; background: transparent; color: var(--muted); width: 36px; height: 36px; border-radius: 10px; display: inline-grid; place-items: center; flex: none; }
+.icon-btn:hover { background: var(--surface-2); color: var(--ink); }
+.icon-btn svg { width: 18px; height: 18px; }
+
+/* inputs */
+.field { display: flex; gap: 8px; }
+.field input, .field textarea { flex: 1; min-width: 0; }
+input[type="text"], input[type="number"], textarea {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  padding: 10px 12px; min-height: 44px; width: 100%;
+}
+textarea { resize: vertical; min-height: 88px; line-height: 1.45; }
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.8; }
+
+/* task list */
+.list { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.task { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.task-head { display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 12px; }
+.task-title { flex: 1; min-width: 0; overflow-wrap: anywhere; background: none; border: 0; text-align: left; padding: 6px 0; font-weight: 700; }
+.task.done .task-title { text-decoration: line-through; color: var(--muted); font-weight: 400; }
+.meta { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tag-ex { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warn); border: 1px solid currentColor; border-radius: 6px; padding: 1px 5px; margin-left: 6px; vertical-align: 2px; }
+.check {
+  appearance: none; -webkit-appearance: none; width: 26px; height: 26px; flex: none; margin: 0;
+  border: 2px solid var(--muted); border-radius: 8px; display: grid; place-items: center; background: var(--surface); cursor: pointer;
+}
+.check:checked { background: var(--good); border-color: var(--good); }
+.check:checked::after { content: ""; width: 7px; height: 13px; border: solid #fff; border-width: 0 3px 3px 0; transform: translateY(-2px) rotate(45deg); }
+.steps { border-top: 1px dashed var(--line); padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; }
+.step { display: flex; align-items: center; gap: 10px; }
+.step .check { width: 22px; height: 22px; border-radius: 7px; }
+.step .check:checked::after { width: 6px; height: 11px; }
+.step span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.step.done span { text-decoration: line-through; color: var(--muted); }
+.step.is-next span { font-weight: 700; }
+.progress { height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.progress i { display: block; height: 100%; background: var(--good); border-radius: 99px; transition: width 0.3s ease; }
+
+.notice { background: var(--surface-2); border-radius: 12px; padding: 10px 12px; font-size: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.notice p { margin: 0; flex: 1; min-width: 12em; }
+
+details.later { border-top: 1px solid var(--line); padding-top: 12px; }
+details.later summary { cursor: pointer; font-weight: 700; color: var(--muted); list-style: none; display: flex; align-items: center; gap: 8px; }
+details.later summary::-webkit-details-marker { display: none; }
+details.later summary::before { content: "▸"; transition: transform 0.15s; }
+details.later[open] summary::before { transform: rotate(90deg); }
+details.later .list { margin-top: 10px; }
+
+/* stuck panel */
+.stuck { background: var(--surface); border: 2px dashed var(--hi); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.stuck ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+
+/* focus timer */
+.dial-wrap { display: grid; place-items: center; padding-block: 8px; }
+.dial { width: min(300px, 78vw); max-width: 100%; aspect-ratio: 1; position: relative; }
+.dial svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.dial .track { fill: none; stroke: var(--surface-2); }
+.dial .wedge { fill: none; stroke: var(--hi); transition: stroke-dasharray 0.9s linear; }
+.dial.running .wedge { stroke: var(--accent); }
+.dial-center { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; align-content: center; gap: 2px; }
+.dial-time { font-family: var(--mono); font-weight: 600; font-size: clamp(40px, 12vw, 56px); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; line-height: 1; }
+.dial-sub { color: var(--muted); font-size: 14px; max-width: 12em; overflow-wrap: anywhere; }
+.presets { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.presets .btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.stat-line { display: flex; gap: 16px; flex-wrap: wrap; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 15px; }
+.stat-line b { color: var(--ink); font-size: 20px; font-family: var(--display); }
+.log li { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.log li:last-child { border-bottom: 0; }
+.log .t { font-family: var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.log .w { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+
+/* routines */
+.routine { background: var(--surface); border-radius: 16px; border: 1px solid var(--line); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.routine-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.routine-item { display: flex; align-items: center; gap: 10px; padding: 4px 0; }
+.routine-item label { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; cursor: pointer; overflow-wrap: anywhere; }
+.routine-item.done label span { text-decoration: line-through; color: var(--muted); }
+.mins { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.add-item { display: grid; grid-template-columns: 1fr 76px auto; gap: 8px; }
+
+/* check-in */
+.scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.scale button { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; min-height: 52px; padding: 6px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; font-weight: 700; }
+.scale button small { font-weight: 400; font-size: 11px; color: var(--muted); }
+.scale button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.scale button[aria-pressed="true"] small { color: inherit; }
+.seg { display: inline-flex; background: var(--surface-2); border-radius: 12px; padding: 3px; gap: 3px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; border-radius: 9px; padding: 8px 14px; font-weight: 700; font-size: 15px; min-height: 40px; }
+.seg button[aria-pressed="true"] { background: var(--surface); box-shadow: var(--shadow); }
+.stepper { display: inline-flex; align-items: center; gap: 4px; }
+.stepper output { font-family: var(--mono); font-size: 20px; min-width: 3.2ch; text-align: center; font-variant-numeric: tabular-nums; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.chart { overflow-x: auto; }
+.chart svg { display: block; width: 100%; min-width: 320px; height: auto; }
+.chart text { fill: var(--muted); font-family: var(--body); font-size: 11px; }
+.legend { display: flex; gap: 14px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+
+/* nav */
+.nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  background: var(--surface); border-top: 1px solid var(--line);
+  padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+}
+.nav-inner { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+.nav button {
+  border: 0; background: transparent; border-radius: 12px; padding: 6px 2px; min-height: 52px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; font-weight: 700; color: var(--muted);
+  position: relative;
+}
+.nav button svg { width: 22px; height: 22px; }
+.nav button[aria-current="page"] { color: var(--ink); background: var(--surface-2); }
+.nav .badge { position: absolute; top: 4px; right: calc(50% - 20px); background: var(--hi); color: var(--hi-ink); font-size: 10px; border-radius: 99px; padding: 0 5px; line-height: 16px; min-width: 16px; font-variant-numeric: tabular-nums; }
+.nav .dot { position: absolute; top: 6px; right: calc(50% - 16px); width: 8px; height: 8px; border-radius: 99px; background: var(--accent); }
+
+/* toast + confetti */
+.toast {
+  position: fixed; left: 50%; transform: translateX(-50%); z-index: 20;
+  bottom: calc(var(--nav-h) + 20px + env(safe-area-inset-bottom, 0px));
+  background: var(--ink); color: var(--bg); border-radius: 12px; padding: 10px 10px 10px 16px;
+  display: flex; align-items: center; gap: 12px; max-width: calc(100% - 32px); width: max-content; font-size: 15px;
+  box-shadow: var(--shadow);
+}
+.toast button { border: 0; background: transparent; color: var(--hi); font-weight: 700; padding: 6px 8px; border-radius: 8px; }
+.burst { position: fixed; pointer-events: none; z-index: 30; width: 0; height: 0; }
+.burst i { position: absolute; width: 8px; height: 8px; border-radius: 2px; animation: fly 0.8s cubic-bezier(.2,.7,.3,1) forwards; }
+@keyframes fly {
+  from { transform: translate(0,0) rotate(0); opacity: 1; }
+  to { transform: translate(var(--x), var(--y)) rotate(var(--r)); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .burst { display: none; }
+  .dial .wedge, .progress i { transition: none; }
+}
+.sync { font-size: 12px; color: var(--muted); text-align: center; }
+</style>
+
+<div class="wrap" id="app" aria-live="polite"></div>
+
+<nav class="nav" aria-label="Sections">
+  <div class="nav-inner" id="nav"></div>
+</nav>
+
+<div id="toast-host"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- helpers ---------- */
+  const $ = (s, r = document) => r.querySelector(s);
+  const uid = () => Math.random().toString(36).slice(2, 10);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const dayKey = (d = new Date()) => {
+    const z = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}`;
+  };
+  const parseDay = (k) => { const [y, m, d] = k.split("-").map(Number); return new Date(y, m - 1, d); };
+  const addDays = (k, n) => { const d = parseDay(k); d.setDate(d.getDate() + n); return dayKey(d); };
+  const hhmm = (ts) => new Date(ts).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const ICON = {
+    today: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>',
+    dump: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13h4l2 3h4l2-3h4"/><path d="M4 13l2-8h12l2 8v6H4z"/></svg>',
+    focus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M10 2h4"/></svg>',
+    routines: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>',
+    checkin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+    down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>',
+  };
+
+  /* ---------- state ---------- */
+  const LS_KEY = "next-step:v1";
+
+  function seedState() {
+    const t = Date.now();
+    const s = (text) => ({ id: uid(), text, done: false });
+    return {
+      v: 1,
+      day: dayKey(),
+      tasks: [
+        { id: uid(), title: "Reply to the dentist about Thursday", today: true, done: false, created: t, example: true,
+          steps: [s("Find the dentist's text"), s("Check calendar for Thursday"), s("Send a yes or pick another day")] },
+        { id: uid(), title: "Laundry", today: true, done: false, created: t + 1, example: true,
+          steps: [s("Carry the basket to the machine"), s("Start a load"), s("Set a phone alarm for when it's done")] },
+        { id: uid(), title: "Pay the electric bill", today: true, done: false, created: t + 2, example: true, steps: [] },
+        { id: uid(), title: "Research standing desks", today: false, done: false, created: t + 3, example: true, steps: [] },
+      ],
+      inbox: [
+        { id: uid(), text: "Birthday present for Sam?", created: t, example: true },
+        { id: uid(), text: "Cancel the streaming trial before the 3rd", created: t, example: true },
+      ],
+      routines: [
+        { id: uid(), name: "Morning launch", items: [
+          { id: uid(), text: "Take meds with water", mins: 1 },
+          { id: uid(), text: "Eat something with protein", mins: 10 },
+          { id: uid(), text: "Look at today's three", mins: 2 },
+          { id: uid(), text: "Keys, wallet, phone, charger", mins: 2 },
+        ] },
+        { id: uid(), name: "Evening shutdown", items: [
+          { id: uid(), text: "Brain dump anything still in my head", mins: 5 },
+          { id: uid(), text: "Pick tomorrow's three", mins: 5 },
+          { id: uid(), text: "Put phone on the charger outside the bedroom", mins: 1 },
+          { id: uid(), text: "Lay out clothes for tomorrow", mins: 3 },
+        ] },
+      ],
+      routineDone: { day: dayKey(), ids: {} },
+      focus: [],
+      checkins: {},
+      wins: {},
+      settings: { focusMins: 25 },
+      updatedAt: t,
+    };
+  }
+
+  function normalize(s) {
+    const base = seedState();
+    if (!s || typeof s !== "object") return base;
+    const out = { ...base, ...s };
+    for (const k of ["tasks", "inbox", "routines", "focus"]) if (!Array.isArray(out[k])) out[k] = base[k];
+    for (const k of ["checkins", "wins", "settings", "routineDone"]) if (!out[k] || typeof out[k] !== "object") out[k] = base[k];
+    return out;
+  }
+
+  let state;
+  try { state = normalize(JSON.parse(localStorage.getItem(LS_KEY))); } catch { state = seedState(); }
+
+  // New day: reset routine checkmarks, clear finished tasks, trim old history.
+  function rollDay() {
+    const today = dayKey();
+    if (state.day === today && state.routineDone.day === today) return false;
+    state.day = today;
+    state.routineDone = { day: today, ids: {} };
+    state.tasks = state.tasks.filter((t) => !t.done);
+    const cutoff = addDays(today, -120);
+    state.focus = state.focus.filter((f) => f.day >= cutoff);
+    for (const k of Object.keys(state.checkins)) if (k < cutoff) delete state.checkins[k];
+    for (const k of Object.keys(state.wins)) if (k < cutoff) delete state.wins[k];
+    return true;
+  }
+
+  /* ---------- persistence: this browser, plus a private synced copy when available ---------- */
+  const sync = { ref: null, writing: false, pending: false, timer: 0, status: "local" };
+
+  function save() {
+    state.updatedAt = Date.now();
+    try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+    if (sync.ref) { clearTimeout(sync.timer); sync.timer = setTimeout(flush, 700); }
+  }
+
+  async function flush() {
+    if (!sync.ref) return;
+    if (sync.writing) { sync.pending = true; return; }
+    sync.writing = true;
+    try { await sync.ref.set({ json: JSON.stringify(state), updatedAt: state.updatedAt }); }
+    catch (e) { console.warn("sync write failed", e); }
+    sync.writing = false;
+    if (sync.pending) { sync.pending = false; flush(); }
+  }
+
+  async function connectSync() {
+    if (!window.claude || typeof window.claude.use !== "function") return;
+    try {
+      const [db, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+      if (!db || !user) return;
+      const id = await user.id();
+      if (!id) return;
+      const ref = db.doc(`data/users/${id}/state`);
+      const snap = await ref.get();
+      if (snap.exists) {
+        const remote = snap.data();
+        if (remote && typeof remote.json === "string" && (remote.updatedAt || 0) > (state.updatedAt || 0)) {
+          state = normalize(JSON.parse(remote.json));
+          rollDay();
+          try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+          render();
+        }
+      }
+      sync.ref = ref;
+      sync.status = "synced";
+      if (!snap.exists || (snap.data()?.updatedAt || 0) < state.updatedAt) flush();
+      ref.onSnapshot((s) => {
+        if (s.metadata.hasPendingWrites || !s.exists) return;
+        const d = s.data();
+        if (!d || typeof d.json !== "string" || (d.updatedAt || 0) <= (state.updatedAt || 0)) return;
+        const active = document.activeElement;
+        if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA") && active.value) return;
+        state = normalize(JSON.parse(d.json));
+        try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+        render();
+      }, () => { sync.status = "local"; });
+      render();
+    } catch (e) {
+      console.warn("sync unavailable", e);
+    }
+  }
+
+  /* ---------- UI state (not persisted) ---------- */
+  const ui = {
+    view: ["today", "dump", "focus", "routines", "checkin"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "today",
+    open: {},          // task id -> expanded
+    stuck: false,
+    editRoutine: null,
+  };
+
+  /* ---------- toast, celebration ---------- */
+  let toastTimer = 0;
+  function toast(msg, undo) {
+    const host = $("#toast-host");
+    host.innerHTML = `<div class="toast" role="status"><span>${esc(msg)}</span>${undo ? '<button type="button" id="undo">Undo</button>' : ""}</div>`;
+    if (undo) $("#undo").onclick = () => { undo(); host.innerHTML = ""; };
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { host.innerHTML = ""; }, undo ? 6000 : 3000);
+  }
+
+  function burst(el) {
+    if (reduceMotion() || !el) return;
+    const r = el.getBoundingClientRect();
+    const b = document.createElement("div");
+    b.className = "burst";
+    b.style.left = r.left + r.width / 2 + "px";
+    b.style.top = r.top + r.height / 2 + "px";
+    const colors = ["var(--hi)", "var(--good)", "var(--accent)"];
+    for (let i = 0; i < 16; i++) {
+      const p = document.createElement("i");
+      const a = (Math.PI * 2 * i) / 16 + Math.random() * 0.4;
+      const d = 40 + Math.random() * 50;
+      p.style.setProperty("--x", Math.cos(a) * d + "px");
+      p.style.setProperty("--y", Math.sin(a) * d + "px");
+      p.style.setProperty("--r", Math.random() * 360 + "deg");
+      p.style.background = colors[i % 3];
+      b.appendChild(p);
+    }
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 900);
+  }
+
+  function addWin() {
+    const k = dayKey();
+    state.wins[k] = (state.wins[k] || 0) + 1;
+  }
+  const winsToday = () => state.wins[dayKey()] || 0;
+
+  const PRAISE = ["Done. Nice.", "That counts.", "One less thing.", "Look at you go.", "Checked off.", "Momentum."];
+  const praise = () => PRAISE[Math.floor(Math.random() * PRAISE.length)];
+
+  /* ---------- task logic ---------- */
+  const todayTasks = () => state.tasks.filter((t) => t.today);
+  const laterTasks = () => state.tasks.filter((t) => !t.today && !t.done);
+  const findTask = (id) => state.tasks.find((t) => t.id === id);
+
+  function nextStep() {
+    for (const t of todayTasks()) {
+      if (t.done) continue;
+      const s = t.steps.find((x) => !x.done);
+      return { task: t, step: s || null };
+    }
+    return null;
+  }
+
+  function completeTask(t, el) {
+    t.done = true; t.doneAt = Date.now();
+    t.steps.forEach((s) => (s.done = true));
+    addWin(); save(); burst(el);
+    toast(`${praise()} ${winsToday()} win${winsToday() === 1 ? "" : "s"} today.`);
+  }
+
+  function completeStep(t, s, el) {
+    s.done = true;
+    addWin();
+    if (t.steps.every((x) => x.done)) { t.done = true; t.doneAt = Date.now(); }
+    save(); burst(el);
+    toast(t.done ? `Finished "${t.title}". ${winsToday()} wins today.` : `${praise()} Next: ${t.steps.find((x) => !x.done).text}`);
+  }
+
+  /* ---------- focus timer ---------- */
+  const timer = { mins: state.settings.focusMins || 25, endAt: 0, remaining: 0, running: false, label: "", tick: 0, wake: null };
+  timer.remaining = timer.mins * 60;
+
+  function timerStart() {
+    if (timer.running) return;
+    if (timer.remaining <= 0) timer.remaining = timer.mins * 60;
+    timer.endAt = Date.now() + timer.remaining * 1000;
+    timer.running = true;
+    try { navigator.wakeLock?.request("screen").then((l) => (timer.wake = l)).catch(() => {}); } catch {}
+    timer.tick = setInterval(timerTick, 250);
+    render();
+  }
+  function timerPause() {
+    if (!timer.running) return;
+    timer.remaining = Math.max(0, Math.round((timer.endAt - Date.now()) / 1000));
+    timer.running = false; clearInterval(timer.tick);
+    try { timer.wake?.release(); } catch {}
+    render();
+  }
+  function timerReset(mins) {
+    timer.running = false; clearInterval(timer.tick);
+    try { timer.wake?.release(); } catch {}
+    if (mins) { timer.mins = mins; state.settings.focusMins = mins; save(); }
+    timer.remaining = timer.mins * 60;
+    render();
+  }
+  function timerTick() {
+    const left = Math.max(0, Math.ceil((timer.endAt - Date.now()) / 1000));
+    if (left !== timer.remaining) { timer.remaining = left; paintDial(); }
+    if (left <= 0) {
+      clearInterval(timer.tick); timer.running = false;
+      try { timer.wake?.release(); } catch {}
+      state.focus.push({ id: uid(), day: dayKey(), at: Date.now(), mins: timer.mins, label: timer.label.trim() });
+      addWin(); save(); chime();
+      toast(`${timer.mins} focused minutes. Stand up, stretch, drink some water.`);
+      timer.remaining = timer.mins * 60;
+      render();
+    }
+  }
+  function chime() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new Ctx();
+      [660, 880, 990].forEach((f, i) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = "sine"; o.frequency.value = f;
+        const t0 = ctx.currentTime + i * 0.22;
+        g.gain.setValueAtTime(0.0001, t0);
+        g.gain.exponentialRampToValueAtTime(0.25, t0 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.6);
+        o.connect(g).connect(ctx.destination); o.start(t0); o.stop(t0 + 0.65);
+      });
+    } catch {}
+  }
+  const fmtClock = (sec) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
+  const R = 44, CIRC = 2 * Math.PI * R;
+  function paintDial() {
+    const w = $("#wedge"), tm = $("#dial-time");
+    if (!w || !tm) return;
+    const frac = timer.remaining / (timer.mins * 60);
+    w.setAttribute("stroke-dasharray", `${(CIRC * frac).toFixed(2)} ${CIRC.toFixed(2)}`);
+    tm.textContent = fmtClock(timer.remaining);
+    document.title = timer.running ? `${fmtClock(timer.remaining)} · Next Step` : "Next Step";
+  }
+
+  /* ---------- views ---------- */
+  function viewToday() {
+    const n = nextStep();
+    const tt = todayTasks();
+    const open = tt.filter((t) => !t.done).length;
+    const later = laterTasks();
+    const hasExamples = state.tasks.some((t) => t.example) || state.inbox.some((t) => t.example);
+
+    const hero = n
+      ? `<section class="now" aria-labelledby="now-l">
+          <p class="label" id="now-l">Your next step</p>
+          <p class="now-step"><mark>${esc(n.step ? n.step.text : n.task.title)}</mark></p>
+          ${n.step ? `<p class="now-from">Part of: ${esc(n.task.title)}</p>` : `<p class="now-from">Feels too big? Break it into smaller steps.</p>`}
+          <div class="row">
+            <button class="btn primary" data-act="now-done" data-task="${n.task.id}" data-step="${n.step ? n.step.id : ""}">Done</button>
+            <button class="btn hi" data-act="now-focus">Focus 10 min on this</button>
+            ${n.step ? "" : `<button class="btn" data-act="toggle-open" data-task="${n.task.id}">Break it down</button>`}
+            <button class="btn ghost" data-act="stuck">I'm stuck</button>
+          </div>
+        </section>`
+      : `<section class="now">
+          <p class="label">Your next step</p>
+          <p class="now-empty">${tt.length ? "Today's list is clear. Rest counts too." : "Nothing picked yet. Add up to three things below."}</p>
+        </section>`;
+
+    const stuck = ui.stuck ? `<section class="stuck" aria-label="Getting unstuck">
+        <p class="label">Getting unstuck</p>
+        <ol>
+          <li>Make the step smaller. "Open the laptop" is a real step.</li>
+          <li>Set a 5-minute timer. You're allowed to stop when it ends.</li>
+          <li>Change where you are: another room, a café, or a friend on a call while you work.</li>
+          <li>Pair it with something you like: music, a snack, a podcast.</li>
+          <li>If it's been "tomorrow" for a week, move it to Later or delete it. That's a decision too.</li>
+        </ol>
+        <div class="row">
+          <button class="btn hi" data-act="five">Start 5 minutes</button>
+          <button class="btn ghost" data-act="stuck">Close</button>
+        </div>
+      </section>` : "";
+
+    const exampleNote = hasExamples ? `<div class="notice"><p>Items marked <span class="tag-ex">Example</span> show how the app works. Clear them when you're ready to add your own.</p><button class="btn small" data-act="clear-examples">Clear examples</button></div>` : "";
+
+    return `
+      ${header()}
+      ${hero}
+      ${stuck}
+      <section class="section" aria-labelledby="three-l">
+        <div class="row"><h2 id="three-l">Today's three</h2><span class="spacer"></span><span class="meta">${open} left</span></div>
+        <p class="hint">Three is plenty. Everything else waits in Later, where it can't shout at you.</p>
+        ${exampleNote}
+        <ul class="list">${tt.map(taskItem).join("") || ""}</ul>
+        <form class="field" data-form="add-task">
+          <input type="text" id="new-task" placeholder="${tt.filter((t) => !t.done).length >= 3 ? "Add to Later…" : "Add something for today…"}" autocomplete="off" aria-label="New task">
+          <button class="btn primary" type="submit">Add</button>
+        </form>
+      </section>
+      <details class="later" ${later.length && ui.laterOpen ? "open" : ""} id="later">
+        <summary>Later <span class="meta">(${later.length})</span></summary>
+        <ul class="list">${later.map(laterItem).join("") || '<li class="hint">Nothing waiting.</li>'}</ul>
+      </details>
+      ${syncLine()}`;
+  }
+
+  function taskItem(t) {
+    const doneSteps = t.steps.filter((s) => s.done).length;
+    const isOpen = ui.open[t.id];
+    const nextId = t.steps.find((s) => !s.done)?.id;
+    return `<li class="task ${t.done ? "done" : ""}">
+      <div class="task-head">
+        <input type="checkbox" class="check" data-act="task-check" data-task="${t.id}" ${t.done ? "checked" : ""} aria-label="Mark ${esc(t.title)} done">
+        <button class="task-title" data-act="toggle-open" data-task="${t.id}" aria-expanded="${!!isOpen}">${esc(t.title)}${t.example ? '<span class="tag-ex">Example</span>' : ""}</button>
+        ${t.steps.length ? `<span class="meta">${doneSteps}/${t.steps.length}</span>` : ""}
+        <button class="icon-btn" data-act="to-later" data-task="${t.id}" title="Move to Later" aria-label="Move ${esc(t.title)} to Later">${ICON.down}</button>
+        <button class="icon-btn" data-act="del-task" data-task="${t.id}" title="Delete" aria-label="Delete ${esc(t.title)}">${ICON.x}</button>
+      </div>
+      ${t.steps.length && !isOpen ? `<div style="padding:0 12px 10px"><div class="progress"><i style="width:${(doneSteps / t.steps.length) * 100}%"></i></div></div>` : ""}
+      ${isOpen ? `<div class="steps">
+        ${t.steps.length ? "" : '<p class="hint">What\'s the very first physical thing you\'d do? Write that.</p>'}
+        ${t.steps.map((s) => `<div class="step ${s.done ? "done" : ""} ${s.id === nextId ? "is-next" : ""}">
+            <input type="checkbox" class="check" data-act="step-check" data-task="${t.id}" data-step="${s.id}" ${s.done ? "checked" : ""} aria-label="Mark step done">
+            <span>${esc(s.text)}</span>
+            <button class="icon-btn" data-act="del-step" data-task="${t.id}" data-step="${s.id}" aria-label="Remove step">${ICON.x}</button>
+          </div>`).join("")}
+        <form class="field" data-form="add-step" data-task="${t.id}">
+          <input type="text" id="step-${t.id}" placeholder="Add a tiny step…" autocomplete="off" aria-label="New step">
+          <button class="btn small" type="submit">Add step</button>
+        </form>
+      </div>` : ""}
+    </li>`;
+  }
+
+  function laterItem(t) {
+    return `<li class="task"><div class="task-head">
+      <span class="task-title" style="font-weight:400">${esc(t.title)}${t.example ? '<span class="tag-ex">Example</span>' : ""}</span>
+      <button class="icon-btn" data-act="to-today" data-task="${t.id}" title="Move to today" aria-label="Move ${esc(t.title)} to today">${ICON.up}</button>
+      <button class="icon-btn" data-act="del-task" data-task="${t.id}" title="Delete" aria-label="Delete ${esc(t.title)}">${ICON.x}</button>
+    </div></li>`;
+  }
+
+  function viewDump() {
+    return `
+      <header class="section">
+        <p class="label">Brain dump</p>
+        <h2>Get it out of your head</h2>
+        <p class="hint">Type whatever is buzzing around: worries, ideas, errands. Don't sort it yet. Once it's written down you can stop holding it.</p>
+      </header>
+      <form class="section" data-form="dump">
+        <textarea id="dump-text" placeholder="One thought per line…" aria-label="Brain dump"></textarea>
+        <div class="row"><button class="btn primary" type="submit">Save thoughts</button><span class="hint">Tip: Ctrl/⌘ + Enter saves.</span></div>
+      </form>
+      <section class="section" aria-labelledby="inbox-l">
+        <div class="row"><h2 id="inbox-l">To sort</h2><span class="spacer"></span><span class="meta">${state.inbox.length}</span></div>
+        ${state.inbox.length ? `<p class="hint">For each one: do it today, park it for later, or let it go.</p>` : `<p class="hint">Empty. Your head should feel a bit quieter.</p>`}
+        <ul class="list">${state.inbox.map((i) => `<li class="task"><div class="task-head">
+          <span class="task-title" style="font-weight:400">${esc(i.text)}${i.example ? '<span class="tag-ex">Example</span>' : ""}</span>
+          <button class="btn small" data-act="inbox-today" data-id="${i.id}">Today</button>
+          <button class="btn small" data-act="inbox-later" data-id="${i.id}">Later</button>
+          <button class="icon-btn" data-act="inbox-del" data-id="${i.id}" aria-label="Let it go">${ICON.x}</button>
+        </div></li>`).join("")}</ul>
+      </section>`;
+  }
+
+  function viewFocus() {
+    const today = state.focus.filter((f) => f.day === dayKey());
+    const mins = today.reduce((a, f) => a + f.mins, 0);
+    const n = nextStep();
+    const suggestion = !timer.label && n ? (n.step ? n.step.text : n.task.title) : "";
+    const frac = timer.remaining / (timer.mins * 60);
+    return `
+      <header class="section">
+        <p class="label">Focus</p>
+        <h2>One thing, for a set time</h2>
+        <p class="hint">The yellow wedge shrinks as time passes, so you can see how much is left without doing math.</p>
+      </header>
+      <div class="field">
+        <input type="text" id="focus-label" value="${esc(timer.label)}" placeholder="${esc(suggestion ? "e.g. " + suggestion : "What are you working on?")}" aria-label="What are you focusing on">
+        ${suggestion ? `<button class="btn small" data-act="use-next">Use next step</button>` : ""}
+      </div>
+      <div class="dial-wrap">
+        <div class="dial ${timer.running ? "running" : ""}">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="track" cx="50" cy="50" r="${R}" stroke-width="10"></circle>
+            <circle class="wedge" id="wedge" cx="50" cy="50" r="${R}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${(CIRC * frac).toFixed(2)} ${CIRC.toFixed(2)}"></circle>
+          </svg>
+          <div class="dial-center">
+            <div class="dial-time" id="dial-time" role="timer">${fmtClock(timer.remaining)}</div>
+            <div class="dial-sub">${timer.running ? esc(timer.label || "Focusing") : timer.remaining < timer.mins * 60 ? "Paused" : `${timer.mins}-minute session`}</div>
+          </div>
+        </div>
+      </div>
+      <div class="presets" role="group" aria-label="Session length">
+        ${[5, 10, 15, 25, 45].map((m) => `<button class="btn small" data-act="preset" data-mins="${m}" aria-pressed="${timer.mins === m}" ${timer.running ? "disabled" : ""}>${m} min</button>`).join("")}
+      </div>
+      <div class="controls">
+        ${timer.running
+          ? `<button class="btn primary" data-act="pause">Pause</button>`
+          : `<button class="btn primary" data-act="start">${timer.remaining < timer.mins * 60 ? "Resume" : "Start"}</button>`}
+        <button class="btn" data-act="reset">Reset</button>
+      </div>
+      <section class="card" aria-labelledby="flog-l">
+        <div class="row"><h2 id="flog-l">Today</h2></div>
+        <div class="stat-line"><span><b>${mins}</b> min focused</span><span><b>${today.length}</b> session${today.length === 1 ? "" : "s"}</span></div>
+        ${today.length ? `<ul class="list log">${today.slice().reverse().map((f) => `<li><span class="t">${hhmm(f.at)}</span><span class="w">${esc(f.label || "Focus session")}</span><span class="mins">${f.mins}m</span></li>`).join("")}</ul>`
+          : `<p class="hint">No sessions yet. Five minutes is a real session. Starting is the hard part.</p>`}
+      </section>`;
+  }
+
+  function viewRoutines() {
+    const done = state.routineDone.ids;
+    return `
+      <header class="section">
+        <p class="label">Routines</p>
+        <h2>Same steps, less deciding</h2>
+        <p class="hint">Checklists reset every morning. The minutes are estimates, so you can see how long the routine really takes.</p>
+      </header>
+      ${state.routines.map((r) => {
+        const left = r.items.filter((i) => !done[i.id]);
+        const total = r.items.reduce((a, i) => a + (Number(i.mins) || 0), 0);
+        const leftMins = left.reduce((a, i) => a + (Number(i.mins) || 0), 0);
+        const pct = r.items.length ? ((r.items.length - left.length) / r.items.length) * 100 : 0;
+        const editing = ui.editRoutine === r.id;
+        return `<section class="routine" aria-label="${esc(r.name)}">
+          <div class="routine-head">
+            <h2>${esc(r.name)}</h2><span class="spacer"></span>
+            <span class="meta">${left.length ? `${leftMins} of ${total} min left` : "All done"}</span>
+          </div>
+          <div class="progress"><i style="width:${pct}%"></i></div>
+          <div>
+            ${r.items.map((i) => `<div class="routine-item ${done[i.id] ? "done" : ""}">
+              <label><input type="checkbox" class="check" data-act="routine-check" data-id="${i.id}" data-routine="${r.id}" ${done[i.id] ? "checked" : ""}><span>${esc(i.text)}</span></label>
+              <span class="mins">${Number(i.mins) || 0}m</span>
+              ${editing ? `<button class="icon-btn" data-act="routine-del-item" data-routine="${r.id}" data-id="${i.id}" aria-label="Remove ${esc(i.text)}">${ICON.x}</button>` : ""}
+            </div>`).join("")}
+          </div>
+          ${editing ? `<form class="add-item" data-form="routine-add" data-routine="${r.id}">
+              <input type="text" id="ri-text-${r.id}" placeholder="New step" aria-label="Step" autocomplete="off">
+              <input type="number" id="ri-mins-${r.id}" placeholder="min" min="0" max="240" aria-label="Minutes">
+              <button class="btn small" type="submit">Add</button>
+            </form>
+            <div class="row"><button class="btn small" data-act="routine-edit" data-routine="">Done editing</button><span class="spacer"></span><button class="btn small ghost" data-act="routine-delete" data-routine="${r.id}">Delete routine</button></div>`
+          : `<div class="row"><button class="btn small ghost" data-act="routine-edit" data-routine="${r.id}">Edit steps</button>${pct > 0 ? `<button class="btn small ghost" data-act="routine-reset" data-routine="${r.id}">Uncheck all</button>` : ""}</div>`}
+        </section>`;
+      }).join("")}
+      <form class="field" data-form="routine-new">
+        <input type="text" id="new-routine" placeholder="New routine, e.g. Leaving the house" aria-label="New routine name" autocomplete="off">
+        <button class="btn" type="submit">Create</button>
+      </form>`;
+  }
+
+  const ENERGY = ["Empty", "Low", "OK", "Good", "Wired"];
+  const MOOD = ["Rough", "Meh", "OK", "Good", "Great"];
+
+  function viewCheckin() {
+    const k = dayKey();
+    const c = state.checkins[k] || {};
+    const scale = (field, words) => `<div class="scale" role="group">${words.map((w, i) => `<button type="button" data-act="ci" data-field="${field}" data-val="${i + 1}" aria-pressed="${c[field] === i + 1}">${i + 1}<small>${w}</small></button>`).join("")}</div>`;
+    return `
+      <header class="section">
+        <p class="label">Daily check-in</p>
+        <h2>How's the engine running?</h2>
+        <p class="hint">Thirty seconds a day. After a couple of weeks you can see how sleep and meds line up with your energy, which is useful to bring to your doctor.</p>
+      </header>
+      <section class="card">
+        <div class="section"><p class="label">Energy</p>${scale("energy", ENERGY)}</div>
+        <div class="section"><p class="label">Mood</p>${scale("mood", MOOD)}</div>
+        <div class="row" style="gap:16px 24px">
+          <div class="section" style="gap:8px"><p class="label">Meds today</p>
+            <div class="seg" role="group">${[["yes", "Taken"], ["no", "Not yet"], ["na", "No meds"]].map(([v, l]) => `<button type="button" data-act="ci" data-field="meds" data-val="${v}" aria-pressed="${c.meds === v}">${l}</button>`).join("")}</div>
+          </div>
+          <div class="section" style="gap:8px"><p class="label">Sleep last night</p>
+            <div class="stepper"><button class="btn small" type="button" data-act="sleep" data-d="-0.5" aria-label="Less sleep">−</button><output id="sleep-out">${c.sleep != null ? c.sleep : "–"}</output><span class="meta">h</span><button class="btn small" type="button" data-act="sleep" data-d="0.5" aria-label="More sleep">+</button></div>
+          </div>
+        </div>
+        <div class="section" style="gap:8px"><label class="label" for="ci-note">Note (optional)</label>
+          <input type="text" id="ci-note" value="${esc(c.note || "")}" placeholder="Anything that stood out today" autocomplete="off"></div>
+      </section>
+      <section class="card" aria-labelledby="trend-l">
+        <h2 id="trend-l">Last 14 days</h2>
+        ${trendChart()}
+        ${insights()}
+      </section>`;
+  }
+
+  function trendChart() {
+    const today = dayKey();
+    const days = Array.from({ length: 14 }, (_, i) => addDays(today, i - 13));
+    const any = days.some((d) => state.checkins[d]);
+    const W = 560, H = 170, L = 26, B = 36, T = 10, cw = (W - L - 6) / 14, bh = H - B - T;
+    const y = (v) => T + bh - (v / 5) * bh;
+    let s = "";
+    for (let v = 1; v <= 5; v++) s += `<line x1="${L}" x2="${W - 6}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}</text>`;
+    days.forEach((d, i) => {
+      const c = state.checkins[d] || {};
+      const x = L + i * cw + cw / 2;
+      if (c.energy) s += `<rect x="${x - 9}" y="${y(c.energy)}" width="8" height="${T + bh - y(c.energy)}" rx="2" fill="var(--accent)"/>`;
+      if (c.mood) s += `<rect x="${x + 1}" y="${y(c.mood)}" width="8" height="${T + bh - y(c.mood)}" rx="2" fill="var(--hi)"/>`;
+      if (c.meds === "yes") s += `<circle cx="${x}" cy="${H - 22}" r="3.5" fill="var(--good)"/>`;
+      const dt = parseDay(d);
+      s += `<text x="${x}" y="${H - 4}" text-anchor="middle" ${d === today ? 'font-weight="700" style="fill:var(--ink)"' : ""}>${i % 2 === 1 || d === today ? dt.getDate() : ""}</text>`;
+    });
+    return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Energy and mood for the last 14 days">${s}</svg></div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>Energy</span><span><i style="background:var(--hi)"></i>Mood</span><span><i style="background:var(--good);border-radius:99px"></i>Meds taken</span></div>
+      ${any ? "" : '<p class="hint">Your bars will appear here after your first check-in.</p>'}`;
+  }
+
+  function insights() {
+    const entries = Object.entries(state.checkins).filter(([, c]) => c.energy);
+    if (entries.length < 5) return `<p class="hint">After 5 check-ins you'll see simple averages here (${entries.length}/5).</p>`;
+    const avg = (arr) => (arr.length ? (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(1) : "–");
+    const on = entries.filter(([, c]) => c.meds === "yes").map(([, c]) => c.energy);
+    const off = entries.filter(([, c]) => c.meds === "no").map(([, c]) => c.energy);
+    const goodSleep = entries.filter(([, c]) => c.sleep >= 7).map(([, c]) => c.energy);
+    const shortSleep = entries.filter(([, c]) => c.sleep != null && c.sleep < 7).map(([, c]) => c.energy);
+    const lines = [];
+    if (on.length && off.length) lines.push(`Average energy: <b>${avg(on)}</b> on days you took meds, <b>${avg(off)}</b> on days you didn't.`);
+    if (goodSleep.length && shortSleep.length) lines.push(`After 7+ hours of sleep: <b>${avg(goodSleep)}</b>. After less: <b>${avg(shortSleep)}</b>.`);
+    lines.push(`Overall average energy: <b>${avg(entries.map(([, c]) => c.energy))}</b> across ${entries.length} days.`);
+    return `<ul class="hint" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px">${lines.map((l) => `<li>${l}</li>`).join("")}</ul>`;
+  }
+
+  function header() {
+    const d = new Date();
+    const hr = d.getHours();
+    const part = hr < 12 ? "morning" : hr < 17 ? "afternoon" : "evening";
+    return `<header class="top">
+      <div>
+        <div class="brand"><span class="brand-mark"></span>Next Step</div>
+        <h1 class="day">${d.toLocaleDateString([], { weekday: "long" })} ${part}</h1>
+      </div>
+      <span class="wins-pill"><b>${winsToday()}</b> win${winsToday() === 1 ? "" : "s"} today</span>
+    </header>`;
+  }
+
+  function syncLine() {
+    return `<p class="sync">${sync.status === "synced" ? "Saved privately to your account, so it's the same on every device." : "Saved in this browser."}</p>`;
+  }
+
+  const TABS = [["today", "Today"], ["dump", "Dump"], ["focus", "Focus"], ["routines", "Routines"], ["checkin", "Check-in"]];
+  function renderNav() {
+    const badge = { dump: state.inbox.length };
+    const checkedIn = !!state.checkins[dayKey()]?.energy;
+    $("#nav").innerHTML = TABS.map(([id, label]) => `<button type="button" data-tab="${id}" ${ui.view === id ? 'aria-current="page"' : ""}>
+      ${ICON[id]}<span>${label}</span>
+      ${badge[id] ? `<span class="badge">${badge[id]}</span>` : ""}
+      ${id === "focus" && timer.running ? '<span class="dot"></span>' : ""}
+      ${id === "checkin" && !checkedIn ? '<span class="dot"></span>' : ""}
+    </button>`).join("");
+  }
+
+  function render() {
+    if (rollDay()) save();
+    const app = $("#app");
+    const views = { today: viewToday, dump: viewDump, focus: viewFocus, routines: viewRoutines, checkin: viewCheckin };
+    const active = document.activeElement?.id;
+    const caret = active ? document.activeElement.selectionStart : null;
+    app.innerHTML = views[ui.view]();
+    renderNav();
+    if (active) {
+      const el = document.getElementById(active);
+      if (el && el !== document.body) { el.focus(); try { if (caret != null) el.setSelectionRange(caret, caret); } catch {} }
+    }
+    if (!timer.running) document.title = "Next Step";
+  }
+
+  /* ---------- events ---------- */
+  $("#nav").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-tab]");
+    if (!b) return;
+    ui.view = b.dataset.tab; ui.stuck = false;
+    try { history.replaceState(null, "", "#" + ui.view); } catch {}
+    render(); window.scrollTo(0, 0);
+  });
+
+  const app = $("#app");
+
+  app.addEventListener("toggle", (e) => { if (e.target.id === "later") ui.laterOpen = e.target.open; }, true);
+
+  app.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-act]");
+    if (!el) return;
+    const act = el.dataset.act;
+    const t = el.dataset.task ? findTask(el.dataset.task) : null;
+
+    switch (act) {
+      case "now-done": {
+        if (!t) break;
+        const s = t.steps.find((x) => x.id === el.dataset.step);
+        s ? completeStep(t, s, el) : completeTask(t, el);
+        break;
+      }
+      case "now-focus": case "five": {
+        const n = nextStep();
+        timer.label = n ? (n.step ? n.step.text : n.task.title) : "";
+        timerReset(act === "five" ? 5 : 10);
+        ui.view = "focus"; ui.stuck = false;
+        timerStart();
+        window.scrollTo(0, 0);
+        return;
+      }
+      case "stuck": ui.stuck = !ui.stuck; break;
+      case "toggle-open": if (t) ui.open[t.id] = !ui.open[t.id]; break;
+      case "task-check":
+        if (!t) break;
+        if (el.checked) completeTask(t, el);
+        else { t.done = false; t.steps.forEach((s) => (s.done = false)); save(); }
+        break;
+      case "step-check": {
+        const s = t?.steps.find((x) => x.id === el.dataset.step);
+        if (!s) break;
+        if (el.checked) completeStep(t, s, el);
+        else { s.done = false; t.done = false; save(); }
+        break;
+      }
+      case "del-step":
+        if (t) { t.steps = t.steps.filter((s) => s.id !== el.dataset.step); save(); }
+        break;
+      case "to-later": if (t) { t.today = false; save(); toast(`Moved "${t.title}" to Later.`); } break;
+      case "to-today": {
+        if (!t) break;
+        const openCount = todayTasks().filter((x) => !x.done).length;
+        t.today = true; save();
+        toast(openCount >= 3 ? "That makes more than three. Consider moving one back." : `"${t.title}" is on today's list.`);
+        break;
+      }
+      case "del-task": {
+        if (!t) break;
+        const idx = state.tasks.indexOf(t);
+        state.tasks.splice(idx, 1); save();
+        toast(`Deleted "${t.title}".`, () => { state.tasks.splice(idx, 0, t); save(); render(); });
+        break;
+      }
+      case "clear-examples":
+        state.tasks = state.tasks.filter((x) => !x.example);
+        state.inbox = state.inbox.filter((x) => !x.example);
+        save(); toast("Examples cleared. It's all yours.");
+        break;
+
+      case "inbox-today": case "inbox-later": {
+        const i = state.inbox.find((x) => x.id === el.dataset.id);
+        if (!i) break;
+        state.inbox = state.inbox.filter((x) => x !== i);
+        const toToday = act === "inbox-today";
+        state.tasks.push({ id: uid(), title: i.text, today: toToday, done: false, created: Date.now(), steps: [] });
+        save(); toast(toToday ? "Added to today." : "Parked in Later.");
+        break;
+      }
+      case "inbox-del": {
+        const idx = state.inbox.findIndex((x) => x.id === el.dataset.id);
+        if (idx < 0) break;
+        const [i] = state.inbox.splice(idx, 1); save();
+        toast("Let it go.", () => { state.inbox.splice(idx, 0, i); save(); render(); });
+        break;
+      }
+
+      case "use-next": {
+        const n = nextStep();
+        if (n) timer.label = n.step ? n.step.text : n.task.title;
+        break;
+      }
+      case "preset": timerReset(Number(el.dataset.mins)); return;
+      case "start": timerStart(); return;
+      case "pause": timerPause(); return;
+      case "reset": timerReset(); return;
+
+      case "routine-check": {
+        if (el.checked) { state.routineDone.ids[el.dataset.id] = true; addWin(); }
+        else delete state.routineDone.ids[el.dataset.id];
+        const r = state.routines.find((x) => x.id === el.dataset.routine);
+        save();
+        if (el.checked && r && r.items.every((i) => state.routineDone.ids[i.id])) { burst(el); toast(`${r.name}: complete.`); }
+        break;
+      }
+      case "routine-edit": ui.editRoutine = el.dataset.routine || null; break;
+      case "routine-reset": {
+        const r = state.routines.find((x) => x.id === el.dataset.routine);
+        r?.items.forEach((i) => delete state.routineDone.ids[i.id]); save();
+        break;
+      }
+      case "routine-del-item": {
+        const r = state.routines.find((x) => x.id === el.dataset.routine);
+        if (r) { r.items = r.items.filter((i) => i.id !== el.dataset.id); save(); }
+        break;
+      }
+      case "routine-delete": {
+        const idx = state.routines.findIndex((x) => x.id === el.dataset.routine);
+        if (idx < 0) break;
+        const [r] = state.routines.splice(idx, 1); ui.editRoutine = null; save();
+        toast(`Deleted "${r.name}".`, () => { state.routines.splice(idx, 0, r); save(); render(); });
+        break;
+      }
+
+      case "ci": {
+        const k = dayKey();
+        const c = (state.checkins[k] = state.checkins[k] || {});
+        const v = el.dataset.field === "meds" ? el.dataset.val : Number(el.dataset.val);
+        c[el.dataset.field] = c[el.dataset.field] === v ? undefined : v;
+        save();
+        break;
+      }
+      case "sleep": {
+        const k = dayKey();
+        const c = (state.checkins[k] = state.checkins[k] || {});
+        const cur = c.sleep != null ? c.sleep : 7;
+        c.sleep = Math.min(14, Math.max(0, (c.sleep != null ? cur + Number(el.dataset.d) : cur)));
+        save();
+        break;
+      }
+      default: return;
+    }
+    render();
+  });
+
+  app.addEventListener("submit", (e) => {
+    const f = e.target.closest("[data-form]");
+    if (!f) return;
+    e.preventDefault();
+    const kind = f.dataset.form;
+    if (kind === "add-task") {
+      const inp = $("#new-task"); const v = inp.value.trim();
+      if (!v) return;
+      const full = todayTasks().filter((t) => !t.done).length >= 3;
+      state.tasks.push({ id: uid(), title: v, today: !full, done: false, created: Date.now(), steps: [] });
+      inp.value = ""; save();
+      if (full) toast(`Today already has three. "${v}" is waiting in Later.`);
+    } else if (kind === "add-step") {
+      const t = findTask(f.dataset.task); const inp = $("#step-" + f.dataset.task);
+      const v = inp.value.trim();
+      if (!t || !v) return;
+      t.steps.push({ id: uid(), text: v, done: false }); t.done = false;
+      inp.value = ""; save();
+    } else if (kind === "dump") {
+      const ta = $("#dump-text");
+      const lines = ta.value.split("\n").map((l) => l.trim()).filter(Boolean);
+      if (!lines.length) return;
+      lines.forEach((text) => state.inbox.push({ id: uid(), text, created: Date.now() }));
+      ta.value = ""; save();
+      toast(`Saved ${lines.length} thought${lines.length === 1 ? "" : "s"}. You can sort them any time.`);
+    } else if (kind === "routine-add") {
+      const r = state.routines.find((x) => x.id === f.dataset.routine);
+      const ti = $("#ri-text-" + r.id), mi = $("#ri-mins-" + r.id);
+      const v = ti.value.trim();
+      if (!v) return;
+      r.items.push({ id: uid(), text: v, mins: Math.max(0, Number(mi.value) || 0) });
+      ti.value = ""; mi.value = ""; save();
+    } else if (kind === "routine-new") {
+      const inp = $("#new-routine"); const v = inp.value.trim();
+      if (!v) return;
+      const r = { id: uid(), name: v, items: [] };
+      state.routines.push(r); ui.editRoutine = r.id; inp.value = ""; save();
+    }
+    render();
+  });
+
+  app.addEventListener("keydown", (e) => {
+    if (e.target.id === "dump-text" && e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault(); e.target.closest("form").requestSubmit();
+    }
+  });
+
+  app.addEventListener("input", (e) => {
+    if (e.target.id === "focus-label") timer.label = e.target.value;
+  });
+  app.addEventListener("change", (e) => {
+    if (e.target.id === "ci-note") {
+      const k = dayKey();
+      const c = (state.checkins[k] = state.checkins[k] || {});
+      c.note = e.target.value.trim() || undefined; save();
+    }
+  });
+
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) render(); });
+
+  render();
+  connectSync();
+})();
+</script>
