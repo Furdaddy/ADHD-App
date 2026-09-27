@@ -1108,6 +1108,10 @@ details.later .list { margin-top: 10px; }
   });
 
   document.addEventListener("visibilitychange", () => { if (!document.hidden) render(); });
+  window.addEventListener("hashchange", () => {
+    const v = location.hash.slice(1);
+    if (TABS.some(([id]) => id === v) && v !== ui.view) { ui.view = v; render(); }
+  });
 
   render();
   connectSync();

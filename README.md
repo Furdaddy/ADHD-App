@@ -19,8 +19,20 @@ Every completed step, task, routine item or focus session counts as a **win**. S
 
 It's a single HTML file with no dependencies to install.
 
-- **Open it:** double-click `index.html`, or host it anywhere static (e.g. GitHub Pages → Settings → Pages → deploy from `main`, root).
+- **Open it:** double-click `index.html`, or host the repo anywhere static.
 - **Edit it:** change `src/next-step.html`, then run `./build.sh` to regenerate `index.html`.
+
+## Put it on your Android home screen
+
+The app is an installable web app (PWA). It needs to be served over HTTPS; GitHub Pages is free and easiest.
+
+1. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, choose `main` (or this branch) and `/ (root)`, then **Save**. After a minute you get a URL like `https://<username>.github.io/ADHD-App/`.
+2. Open that URL in **Chrome** on your phone.
+3. Tap **⋮ → Add to Home screen → Install** (or accept the "Install app" prompt).
+
+It then opens full-screen with its own icon, and it works offline. Long-press the icon for shortcuts to **Brain dump**, **Focus timer** and **Check-in**.
+
+Note: the installed app keeps its data on the phone. It is separate from the copy saved by the Claude artifact version.
 
 ## Your data
 
