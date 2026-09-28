@@ -34,6 +34,30 @@ It then opens full-screen with its own icon, and it works offline. Long-press th
 
 Note: the installed app keeps its data on the phone. It is separate from the copy saved by the Claude artifact version.
 
+## Android app (with home-screen widget)
+
+`android/` is a native Android app that wraps the same UI and adds:
+
+- **A home-screen widget** that shows your next step, with **Done** (marks it off without opening the app), **Focus 10** (starts a 10-minute session on that step) and **+ Dump** buttons, plus today's win count.
+- **A focus timer that rings when the phone is locked**, with a countdown in the notification shade.
+- **Long-press shortcuts** on the app icon: Brain dump, Focus timer, Check-in.
+- **Offline use**: everything is stored on the phone.
+
+### Install it
+
+Every push that touches the app runs the **Android APK** GitHub Action, which builds the app and attaches `next-step.apk` to the **android-latest** release.
+
+1. On your phone, sign in to GitHub in the browser and open this repo → **Releases** → **android-latest**.
+2. Download `next-step.apk` and open it. Android will ask you to allow installs from your browser: allow it, then tap **Install**.
+3. Long-press an empty spot on your home screen → **Widgets** → **Next Step**, and drag it onto the screen.
+4. The first time you start a focus session, allow notifications so the timer can alert you.
+
+New builds install over the old one and keep your data. They are signed with `android/app/nextstep.keystore`, which is committed on purpose so updates match. That's fine for installing on your own phone; for the Play Store you'd need a private key kept out of git.
+
+### Build locally (optional)
+
+With Android Studio, or JDK 17 + the Android SDK: `./build.sh && cd android && ./gradlew assembleRelease`.
+
 ## Your data
 
 Everything is stored in your browser (`localStorage`). Nothing is sent anywhere. When the page is opened as a Claude artifact, it also saves a private copy to your account so it stays the same across devices.

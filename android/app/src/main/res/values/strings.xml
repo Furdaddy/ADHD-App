@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Next Step</string>
+    <string name="widget_desc">Your next step, with Done and Focus buttons.</string>
+    <string name="widget_label">NEXT STEP</string>
+    <string name="widget_empty">Nothing picked for today</string>
+    <string name="widget_empty_hint">Tap to choose up to three things.</string>
+    <string name="widget_part_of">Part of: %1$s</string>
+    <string name="widget_left">%1$d left today</string>
+    <string name="widget_done">Done</string>
+    <string name="widget_focus">Focus 10</string>
+    <string name="widget_dump">+ Dump</string>
+    <plurals name="wins_today">
+        <item quantity="one">%d win</item>
+        <item quantity="other">%d wins</item>
+    </plurals>
+    <string name="shortcut_dump">Brain dump</string>
+    <string name="shortcut_focus">Focus timer</string>
+    <string name="shortcut_checkin">Check-in</string>
+    <string name="channel_running">Focus timer running</string>
+    <string name="channel_done">Focus timer finished</string>
+    <string name="focus_running">Focusing</string>
+    <string name="focus_running_text">%1$d-minute session</string>
+    <string name="focus_done_title">Time\'s up: %1$d minutes done</string>
+    <string name="focus_done_text">Stand up, stretch, drink some water.</string>
+    <string name="focus_done_text_label">Nice work on \"%1$s\". Stand up and stretch.</string>
+</resources>

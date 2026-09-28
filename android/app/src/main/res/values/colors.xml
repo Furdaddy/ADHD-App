@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#EEF2EF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_2">#E2E9E5</color>
+    <color name="ink">#18282A</color>
+    <color name="muted">#56696A</color>
+    <color name="accent">#16505A</color>
+    <color name="accent_ink">#FFFFFF</color>
+    <color name="hi">#F6CB45</color>
+    <color name="hi_ink">#2A2100</color>
+    <color name="launcher_bg">#16505A</color>
+</resources>

@@ -360,8 +360,14 @@ details.later .list { margin-top: 10px; }
     return out;
   }
 
+  // Present only inside the Android app: mirrors state for the home-screen widget and runs the timer alarm.
+  const native = window.NextStepAndroid || null;
+  const readNative = () => { try { const s = native && native.getState(); return s ? JSON.parse(s) : null; } catch { return null; } };
+
   let state;
   try { state = normalize(JSON.parse(localStorage.getItem(LS_KEY))); } catch { state = seedState(); }
+  const fromNative = readNative();
+  if (fromNative && (fromNative.updatedAt || 0) > (state.updatedAt || 0)) state = normalize(fromNative);
 
   // New day: reset routine checkmarks, clear finished tasks, trim old history.
   function rollDay() {
@@ -383,6 +389,7 @@ details.later .list { margin-top: 10px; }
   function save() {
     state.updatedAt = Date.now();
     try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+    try { native && native.saveState(JSON.stringify(state)); } catch {}
     if (sync.ref) { clearTimeout(sync.timer); sync.timer = setTimeout(flush, 700); }
   }
 
@@ -515,40 +522,72 @@ details.later .list { margin-top: 10px; }
   const timer = { mins: state.settings.focusMins || 25, endAt: 0, remaining: 0, running: false, label: "", tick: 0, wake: null };
   timer.remaining = timer.mins * 60;
 
+  // A running session is kept in state, so it survives the app being closed or reloaded.
   function timerStart() {
     if (timer.running) return;
     if (timer.remaining <= 0) timer.remaining = timer.mins * 60;
     timer.endAt = Date.now() + timer.remaining * 1000;
     timer.running = true;
-    try { navigator.wakeLock?.request("screen").then((l) => (timer.wake = l)).catch(() => {}); } catch {}
-    timer.tick = setInterval(timerTick, 250);
+    state.timer = { endAt: timer.endAt, mins: timer.mins, label: timer.label.trim() };
+    save();
+    try { native && native.startTimer(timer.endAt, timer.mins, timer.label.trim()); } catch {}
+    runTimer();
     render();
+  }
+  function runTimer() {
+    try { navigator.wakeLock?.request("screen").then((l) => (timer.wake = l)).catch(() => {}); } catch {}
+    clearInterval(timer.tick);
+    timer.tick = setInterval(timerTick, 250);
+  }
+  function stopTimer() {
+    timer.running = false; clearInterval(timer.tick);
+    try { timer.wake?.release(); } catch {}
+    if (state.timer) { state.timer = null; save(); }
   }
   function timerPause() {
     if (!timer.running) return;
     timer.remaining = Math.max(0, Math.round((timer.endAt - Date.now()) / 1000));
-    timer.running = false; clearInterval(timer.tick);
-    try { timer.wake?.release(); } catch {}
+    stopTimer();
+    try { native && native.cancelTimer(); } catch {}
     render();
   }
   function timerReset(mins) {
-    timer.running = false; clearInterval(timer.tick);
-    try { timer.wake?.release(); } catch {}
+    if (timer.running) { try { native && native.cancelTimer(); } catch {} }
+    stopTimer();
     if (mins) { timer.mins = mins; state.settings.focusMins = mins; save(); }
     timer.remaining = timer.mins * 60;
     render();
+  }
+  function finishSession(at) {
+    state.focus.push({ id: uid(), day: dayKey(new Date(at)), at, mins: timer.mins, label: timer.label.trim() });
+    addWin();
+    stopTimer();
+    save();
+    timer.remaining = timer.mins * 60;
   }
   function timerTick() {
     const left = Math.max(0, Math.ceil((timer.endAt - Date.now()) / 1000));
     if (left !== timer.remaining) { timer.remaining = left; paintDial(); }
     if (left <= 0) {
-      clearInterval(timer.tick); timer.running = false;
-      try { timer.wake?.release(); } catch {}
-      state.focus.push({ id: uid(), day: dayKey(), at: Date.now(), mins: timer.mins, label: timer.label.trim() });
-      addWin(); save(); chime();
+      finishSession(timer.endAt);
+      // In the Android app the system alarm plays the sound, even when the screen is off.
+      if (native) { try { native.timerEnded(); } catch {} } else chime();
       toast(`${timer.mins} focused minutes. Stand up, stretch, drink some water.`);
-      timer.remaining = timer.mins * 60;
       render();
+    }
+  }
+  // Pick up a session that was running when the page was closed.
+  function resumeTimer() {
+    const t = state.timer;
+    if (!t || timer.running) return;
+    timer.mins = t.mins; timer.label = t.label || ""; timer.endAt = t.endAt;
+    if (t.endAt > Date.now()) {
+      timer.running = true;
+      timer.remaining = Math.ceil((t.endAt - Date.now()) / 1000);
+      runTimer();
+    } else {
+      finishSession(t.endAt);
+      toast(`You finished a ${t.mins}-minute focus session. Nice.`);
     }
   }
   function chime() {
@@ -927,15 +966,9 @@ details.later .list { margin-top: 10px; }
         s ? completeStep(t, s, el) : completeTask(t, el);
         break;
       }
-      case "now-focus": case "five": {
-        const n = nextStep();
-        timer.label = n ? (n.step ? n.step.text : n.task.title) : "";
-        timerReset(act === "five" ? 5 : 10);
-        ui.view = "focus"; ui.stuck = false;
-        timerStart();
-        window.scrollTo(0, 0);
+      case "now-focus": case "five":
+        focusOnNext(act === "five" ? 5 : 10);
         return;
-      }
       case "stuck": ui.stuck = !ui.stuck; break;
       case "toggle-open": if (t) ui.open[t.id] = !ui.open[t.id]; break;
       case "task-check":
@@ -1108,12 +1141,39 @@ details.later .list { margin-top: 10px; }
   });
 
   document.addEventListener("visibilitychange", () => { if (!document.hidden) render(); });
-  window.addEventListener("hashchange", () => {
-    const v = location.hash.slice(1);
-    if (TABS.some(([id]) => id === v) && v !== ui.view) { ui.view = v; render(); }
-  });
+  function focusOnNext(mins) {
+    const n = nextStep();
+    timer.label = n ? (n.step ? n.step.text : n.task.title) : "";
+    timerReset(mins);
+    ui.view = "focus"; ui.stuck = false;
+    try { history.replaceState(null, "", "#focus"); } catch {}
+    timerStart();
+    window.scrollTo(0, 0);
+  }
 
+  // "#start-focus" comes from the Android widget's Focus button.
+  function applyHash() {
+    const v = location.hash.slice(1);
+    if (v === "start-focus") { if (!timer.running) focusOnNext(10); else { ui.view = "focus"; render(); } return; }
+    if (TABS.some(([id]) => id === v) && v !== ui.view) { ui.view = v; render(); }
+  }
+  window.addEventListener("hashchange", applyHash);
+
+  // Called by the Android app when it comes back to the foreground (the widget may have changed things).
+  window.nextStepResume = () => {
+    const n = readNative();
+    if (n && (n.updatedAt || 0) > (state.updatedAt || 0)) {
+      state = normalize(n);
+      try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+      resumeTimer();
+    }
+    render();
+  };
+
+  resumeTimer();
   render();
+  if (native && !fromNative) save();
+  if (location.hash === "#start-focus") applyHash();
   connectSync();
 })();
 </script>

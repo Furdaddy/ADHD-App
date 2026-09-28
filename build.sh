@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
   printf '<style>[hidden]{display:none!important}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px)}</style>\n'
   printf '</head>\n<body>\n'
   cat src/next-step.html
-  printf '\n<script>if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js");</script>\n'
+  printf '\n<script>if (!window.NextStepAndroid && "serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js");</script>\n'
   printf '</body>\n</html>\n'
 } > index.html
 echo "Built index.html"
